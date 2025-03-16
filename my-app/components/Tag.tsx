@@ -1,5 +1,4 @@
 import { useState, useEffect, PropsWithChildren } from 'react';
-import { Image, ScrollView, Text, View } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import requests from '@/services/requests';
 
@@ -31,7 +30,9 @@ export default function Tag({
         let tagList = tags?.tags.map((tag, index) => { return { label: tag, value: tag } })
         setTagItems(tagList)
       }
-    })
+    },
+    null
+  )
 
     return () => {
       // console.log('...')
@@ -39,15 +40,14 @@ export default function Tag({
   }, []);
 
   return (
-
-    <View style={{
-      backgroundColor: '#171717',
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      paddingHorizontal: 15
-    }}>
-      <DropDownPicker
+      <DropDownPicker 
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop:10,
+          marginBottom: 50
+        }}
         open={open}
         items={tagItems}
         setItems={setTagItems}
@@ -58,8 +58,6 @@ export default function Tag({
         placeholder={'Filter by tag...'}
         multiple={false}
       />
-    </View>
-
   );
 
 }

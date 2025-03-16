@@ -6,6 +6,10 @@ export type User = {
   image?: string;
 };
 
+export type UserWrapper = {
+  user: User
+};
+
 export type Author = {
   username: string;
   bio: string;
@@ -41,6 +45,11 @@ export type Comment = {
   updatedAt: string;
   body: string;
   author: Author;
+};
+
+
+export type CommentWrapper = {
+  "comments": Comment[]
 };
 
 export type NewArticle = {

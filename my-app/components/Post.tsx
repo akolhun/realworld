@@ -1,13 +1,12 @@
 
-import { useState, useEffect, PropsWithChildren } from 'react';
-import DropDownPicker from 'react-native-dropdown-picker';
+import { useState, useEffect, useContext, PropsWithChildren } from 'react';
 import Tag from '@/components/Tag';
 import Article from '@/components/Article';
-import { ResArticle } from '@/store/types';
+import { ResArticle, User, UserWrapper } from '@/store/types';
 import { ThemedView } from '@/components/ThemedView';
 import requests from '@/services/requests';
 import styles from '@/assets/css/styles';
-
+import LoginComponent from './LoginComponent';
 
 export default function Post() {
   const [tagValues, setTagValues] = useState<string[]>([]);
@@ -41,18 +40,14 @@ export default function Post() {
     };
   }, []);
 
-
   return (
     <>
+      <LoginComponent />
       <ThemedView style={styles.container}>
-        <Tag tagValue={tagValues} setTagValue={setTagValues} onTagChanged={tagChanged} />
-      </ThemedView>
-      <ThemedView style={styles.container}>
+      <Tag tagValue={tagValues} setTagValue={setTagValues} onTagChanged={tagChanged} />
         <Article articles={articles} />
       </ThemedView>
     </>
   );
 
 }
-
-
